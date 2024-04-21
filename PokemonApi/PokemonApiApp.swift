@@ -9,9 +9,21 @@ import SwiftUI
 
 @main
 struct PokemonApiApp: App {
+    @StateObject private var store: AppStore
+    
+    init() {
+        let appEnvironment = AppEnvironment()
+        let store = AppStore(initial: .init(),
+                             reducer: appReducer,
+                             environment: appEnvironment,
+                             middleware: appMiddleware,
+                             subscriber: appSubscriber)
+        _store = StateObject(wrappedValue: store)
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }
