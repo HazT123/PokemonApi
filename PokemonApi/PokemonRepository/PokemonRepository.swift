@@ -57,8 +57,7 @@ public class PokemonRepository: PokemonRepositoryProtocol {
         if fetchedPokemon.isEmpty {
             fetchedPokemon = try await getNetworkPlanner()
         }
-
-//        fetchedPokemon = fetchedPokemon.sorted()
+        
         pokemon.send(fetchedPokemon)
     }
     
